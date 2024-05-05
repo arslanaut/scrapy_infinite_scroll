@@ -7,8 +7,7 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-from playwright.async_api import Request
-from scrapy.http.headers import Headers
+
 BOT_NAME = "scrapy_infinite_scroll"
 
 SPIDER_MODULES = ["scrapy_infinite_scroll.spiders"]
@@ -98,7 +97,8 @@ FEED_EXPORT_ENCODING = "utf-8"
 # EXTRA
 # ===========================================================================
 
-
+from playwright.async_api import Request
+from scrapy.http.headers import Headers
 def custom_headers(
     browser_type: str,
     playwright_request: Request,
@@ -139,8 +139,10 @@ LOG_LEVEL = "DEBUG"  # or "INFO" in production
 # to avoid basic bot detection we want to set some basic headers
 DEFAULT_REQUEST_HEADERS = {
     # we should use headers
-    'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36",
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+    'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 \
+    (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36",
+    'Accept': 'text/html,application/xhtml+xml,application/xml;\
+    q=0.9,image/webp,image/apng,*/*;q=0.8',
     'Accept-Language': 'en',
 }
 # will cache all request to /httpcache directory which makes running spiders in development much quicker
